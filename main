@@ -1,0 +1,22 @@
+import sys
+import math
+
+text = input()
+
+# Считаем, какая буква встречается чаще всего
+letters = [c.lower() for c in text if c.isalpha()]
+most = max(set(letters), key=letters.count)
+
+#  'e'
+shift = (ord(most) - ord('e')) % 26
+
+# Декодируем текст
+res = ''
+for c in text:
+    if c.isalpha():
+        base = ord('A') if c.isupper() else ord('a')
+        res += chr((ord(c) - base - shift) % 26 + base)
+    else:
+        res += c
+
+print(res)
